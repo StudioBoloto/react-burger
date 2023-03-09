@@ -1,0 +1,36 @@
+.BurgerConstructor {
+    display: flex;
+    width: 568px;
+    height: 812px;
+    overflow-y: scroll;
+    flex-direction: column;
+}
+
+.totalSumSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkOutSection {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: flex-end;
+}
+
+.productSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.productSection:first-child {
+    justify-content: flex-end;
+}
+
+.productSection:last-child {
+    justify-content: flex-end;
+    margin-bottom: 0;
+}
