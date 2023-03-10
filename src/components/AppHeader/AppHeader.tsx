@@ -12,16 +12,17 @@ interface HeaderProps {
     children: React.ReactNode;
     className?: string;
     elementIcon?: React.ReactNode;
+    link?: string | undefined
 }
 
 const HeaderElement = (props: HeaderProps) => {
     return (
-        <div className={`${styles.AppHeader} ${styles.HeaderElement} pt-4 pb-4 pl-5 pr-5 mt-4 mb-4`}>
+        <a href={props.link} className={`${styles.AppHeader} ${styles.HeaderElement} pt-4 pb-4 pl-5 pr-5 mt-4 mb-4`}>
             {props.elementIcon}
             <p className={`text text_type_main-default ml-2 ${props.className}`}>
                 {props.children}
             </p>
-        </div>
+        </a>
     )
 }
 

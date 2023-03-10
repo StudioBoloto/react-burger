@@ -1,4 +1,4 @@
-import {IProduct} from "../../../Downloads/src/models";
+import {IProduct} from "../models";
 
 export const products : IProduct[] = [
     {
