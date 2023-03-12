@@ -1,0 +1,43 @@
+.BurgerConstructor {
+    display: flex;
+    width: 568px;
+    height: 812px;
+    flex-direction: column;
+}
+
+.totalSumSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkOutSection {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: flex-end;
+}
+
+.productSection {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.productElement {
+    min-width: 536px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.productElementWide {
+    min-width: 568px !important;
+    justify-content: space-between !important;
+}
+
+.productSection:last-child {
+    margin-bottom: 0;
+}

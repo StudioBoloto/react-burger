@@ -1,0 +1,19 @@
+.AppHeader {
+    display: flex;
+    align-items: center;
+}
+
+.HeaderElement {
+    justify-content: center;
+}
+
+.header {
+    justify-content: space-between;
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav {
+    gap: 8px;
+}
