@@ -12,3 +12,10 @@ export interface IProduct {
     "image_large": string
     "__v": number
 }
+
+export interface IOrder {
+    "_id": string
+    "status": string
+    "address": string
+    "image": string
+}

@@ -1,4 +1,13 @@
-import {IProduct} from "../models";
+import {IOrder, IProduct} from "../models";
+
+export const data : IOrder[] = [
+    {
+        "_id": "034536",
+        "status" : "Ваш заказ начали готовить",
+        "address": "Дождитесь готовности на орбитальной станции",
+        "image": "/done-icon.svg"
+    }
+]
 
 export const products : IProduct[] = [
     {
