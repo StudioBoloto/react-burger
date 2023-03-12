@@ -5,16 +5,21 @@ import {IProduct} from "../../models";
 
 interface ProductProps {
     product: IProduct;
-    quantity: number
+    quantity: number;
+    onClick: () => void;
 }
 
-export function Product({product, quantity}: ProductProps) {
+export function Product({product, quantity, onClick}: ProductProps) {
     const [count, setCount] = useState(quantity);
     const handleClick = () => {
         setCount(count + 1);
     };
+
     return (
-        <span className={`${styles.Product} mt-6 ml-4 mr-2 mb-2`} onClick={handleClick}>
+        <span className={`${styles.Product} mt-6 ml-4 mr-2 mb-2`} onClick={() => {
+            onClick();
+            handleClick();
+        }}>
             {count > 0 && <Counter count={count} size="default"/>}
             <span className="ml-4 mr-4">
                 <img src={product.image} alt={product.name}/>
