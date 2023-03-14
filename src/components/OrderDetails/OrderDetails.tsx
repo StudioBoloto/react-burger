@@ -7,12 +7,11 @@ import {IOrder} from "../../models";
 interface OrderDetailsProps {
     data: IOrder;
     onClose: () => void;
-    isOpen: boolean;
 }
 
-export const OrderDetails = ({data, onClose, isOpen}: OrderDetailsProps) => {
+export const OrderDetails = ({data, onClose}: OrderDetailsProps) => {
     return (
-        <Modal onClose={onClose} isOpen={isOpen}>
+        <Modal onClose={onClose}>
             <div className={`${styles.OrderDetails} ml-25 mr-25 mt-30 mb-30`}>
                 <p className={`${styles.OrderDetailsId} text text_type_digits-large mb-8`}>{data._id}</p>
                 <p className='text text_type_main-medium mb-15'>идентификатор заказа</p>

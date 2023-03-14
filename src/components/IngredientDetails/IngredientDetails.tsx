@@ -7,12 +7,11 @@ import {Nutrition} from "../Nutrition/Nutrition";
 interface IngredientModalProps {
     product: IProduct;
     onClose: () => void;
-    isOpen: boolean;
 }
 
-export const IngredientDetails = ({product, onClose, isOpen}: IngredientModalProps) => {
+export const IngredientDetails = ({product, onClose}: IngredientModalProps) => {
     return (
-        <Modal header="Детали ингредиента" onClose={onClose} isOpen={isOpen}>
+        <Modal header="Детали ингредиента" onClose={onClose}>
             <div className={`${styles.IngredientDetails} mb-15`}>
                 <div className={styles.Image}>
                     <img className='ml-5 mr-5 mb-4' src={product.image_large} alt={product.name}/>

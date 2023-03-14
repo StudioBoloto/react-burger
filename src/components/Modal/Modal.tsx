@@ -11,11 +11,10 @@ interface ModalProps {
     children: React.ReactNode;
     header?: React.ReactNode;
     onClose: () => void;
-    isOpen: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
-    const {children, header, onClose, isOpen} = props;
+    const {children, header, onClose} = props;
     const modalRef = useRef<HTMLDivElement>(null);
 
     const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
@@ -31,20 +30,18 @@ export const Modal = (props: ModalProps) => {
     }, []);
 
     return createPortal(
-        isOpen ? (
-            <>
-                <div className={styles.Modal} onKeyDown={handleKeyDown} ref={modalRef} tabIndex={0}>
-                    <div className={styles.CloseIcon}>
-                        <CloseIcon onClick={onClose} type="primary"/>
-                    </div>
-                    {header && <ModalHeader className="text_type_main-large">
-                        {header}
-                    </ModalHeader>}
-                    {children}
+        <>
+            <div className={styles.Modal} onKeyDown={handleKeyDown} ref={modalRef} tabIndex={0}>
+                <div className={styles.CloseIcon}>
+                    <CloseIcon onClick={onClose} type="primary"/>
                 </div>
-                <ModalOverlay onClose={onClose}/>
-            </>
-        ) : null,
+                {header && <ModalHeader className="text_type_main-large">
+                    {header}
+                </ModalHeader>}
+                {children}
+            </div>
+            <ModalOverlay onClose={onClose}/>
+        </>,
         modalRoot
     );
 }

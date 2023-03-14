@@ -3,6 +3,8 @@ import {AppHeader} from "../AppHeader/AppHeader";
 import {BurgerIngredients} from "../BurgerIngredients/BurgerIngredients";
 import {BurgerConstructor} from "../BurgerConstructor/BurgerConstructor";
 import {useEffect, useState} from "react";
+import {getIngredients} from "../Api";
+
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -11,26 +13,16 @@ function App() {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch('https://norma.nomoreparties.space/api/ingredients')
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data.data);
-                setIsLoading(false);
-            })
+        getIngredients().then((data) => {
+            setProducts(data);
+            setIsLoading(false);
+        })
             .catch(e => {
                 setHasError(true);
                 setIsLoading(false);
             });
     }, []);
 
-    useEffect(() => {
-        if (isLoading) {
-            console.log('Загрузка...');
-        }
-        if (hasError) {
-            console.log('Произошла ошибка');
-        }
-    }, [isLoading, hasError]);
     return (
         <>
             {!isLoading && !hasError && products.length && (

@@ -12,18 +12,15 @@ interface ProductsProps {
 
 export const IngredientsItems = ({products, type}: ProductsProps) => {
     const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
-    const [isOpen, setIsOpen] = useState(false);
     const filteredProducts = useMemo(() => products.filter(product => product.type === type),
         [products, type]);
 
     const handleProductClick = (product: IProduct) => {
         setSelectedProduct(product);
-        setIsOpen(true);
     };
 
     const handleCloseModal = () => {
         setSelectedProduct(null);
-        setIsOpen(false);
     };
 
     return (
@@ -36,10 +33,9 @@ export const IngredientsItems = ({products, type}: ProductsProps) => {
                     </span>
             ))}
             <div style={{overflow: 'hidden'}}>
-                {isOpen && selectedProduct && <IngredientDetails
+                {selectedProduct && <IngredientDetails
                     product={selectedProduct}
                     onClose={handleCloseModal}
-                    isOpen={isOpen}
                 />}
             </div>
         </div>

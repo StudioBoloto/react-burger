@@ -63,7 +63,6 @@ export function BurgerConstructor({products}: ProductsProps) {
                 {isOpen && <OrderDetails
                     data={data[0]}
                     onClose={handleCloseModal}
-                    isOpen={isOpen}
                 />}
             </div>
         </div>
