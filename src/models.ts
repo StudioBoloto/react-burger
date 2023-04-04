@@ -19,3 +19,11 @@ export interface IOrder {
     "address": string
     "image": string
 }
+
+export interface IOrderResponse {
+    name: string;
+    order: {
+        number: number;
+    };
+    success: boolean;
+}

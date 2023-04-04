@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useContext, useMemo, useState, useReducer, useEffect} from 'react';
 import styles from './BurgerConstructor.module.css';
 import commonStyles from '../App/App.module.css'
 import {ProductItem} from "../ProductItem/ProductItem";
@@ -9,23 +9,69 @@ import {
     CurrencyIcon,
     DragIcon
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import {IProduct} from "../../models";
+import {ProductsContext} from "../../services/productsContext";
+import {IOrder, IProduct} from "../../models";
+import {createOrder} from "../Api";
 
-interface ProductsProps {
-    products: IProduct[];
+interface State {
+    totalPrice: number;
+    ingredientsIds: string[];
 }
 
-export function BurgerConstructor({products}: ProductsProps) {
+interface Action {
+    type: string;
+    product: IProduct;
+}
+
+export function BurgerConstructor() {
+    const products = useContext(ProductsContext);
+    const initialState = {totalPrice: 0, ingredientsIds: []};
     const [isOpen, setIsOpen] = useState(false);
-    const totalPrice = useMemo(() => {
-        return products.reduce((total, product) => {
-            return total + product.price;
-        }, 0);
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const [orderId, setOrderId] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [hasError, setHasError] = useState(false);
+
+    function reducer(state: State, action: Action) {
+        switch (action.type) {
+            case 'increment':
+                return {
+                    totalPrice: state.totalPrice + action.product.price,
+                    ingredientsIds: [...state.ingredientsIds, action.product._id]
+                };
+            case 'decrement':
+                return {
+                    totalPrice: state.totalPrice - action.product.price,
+                    ingredientsIds: state.ingredientsIds.filter(id => id !== action.product._id)
+                };
+            default:
+                console.log(`Wrong type of action: ${action.type}`);
+                return state;
+        }
+    }
+
+    useEffect(() => {
+        products.map((product) => dispatch({type: 'increment', product: product}))
     }, []);
     const middleProducts = products.slice(1, -1);
 
+    const orderDetailsData: IOrder = {
+        ...data[0],
+        _id: orderId
+    };
+
     const handleButtonClick = () => {
         setIsOpen(true);
+        setIsLoading(true);
+        createOrder(state.ingredientsIds)
+            .then((data) => {
+                setOrderId(data.order.number.toString());
+                setIsLoading(false);
+            })
+            .catch(e => {
+                setHasError(true);
+                setIsLoading(false);
+            });
     };
 
     const handleCloseModal = () => {
@@ -52,7 +98,7 @@ export function BurgerConstructor({products}: ProductsProps) {
             </section>
             <section className={`${styles.checkOutSection} mt-10`}>
                 <section className={styles.totalSumSection}>
-                    <p className="text text_type_digits-medium">{totalPrice}</p>
+                    <p className="text text_type_digits-medium">{state.totalPrice}</p>
                     <CurrencyIcon type="primary"/>
                 </section>
                 <Button htmlType="button" type="primary" size="medium" onClick={handleButtonClick}>
@@ -61,7 +107,7 @@ export function BurgerConstructor({products}: ProductsProps) {
             </section>
             <div style={{overflow: 'hidden'}}>
                 {isOpen && <OrderDetails
-                    data={data[0]}
+                    data={orderDetailsData}
                     onClose={handleCloseModal}
                 />}
             </div>
