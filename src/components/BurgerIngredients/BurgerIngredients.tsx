@@ -4,10 +4,14 @@ import commonStyles from '../App/App.module.css'
 import {IngredientsTitle} from "../IngredientsTitle/IngredientsTitle";
 import {IngredientsItems} from "../IngredientsItems/IngredientsItems";
 import {Tabs} from "../Tabs/Tabs";
-import {products} from "../../utils/data";
+import {IProduct} from "../../models";
 
 
-export function BurgerIngredients() {
+interface ProductsProps {
+    products: IProduct[];
+}
+
+export function BurgerIngredients({products}: ProductsProps) {
     return (
         <section className={`${styles.BurgerIngredients} pt-10 mr-10`}>
             <IngredientsTitle className="text_type_main-large">Соберите бургер</IngredientsTitle>

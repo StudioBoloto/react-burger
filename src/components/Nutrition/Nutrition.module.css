@@ -1,0 +1,6 @@
+.Nutrition {
+    display: flex;
+    justify-content: space-between;
+    width: 520px;
+    gap: 20px;
+}
