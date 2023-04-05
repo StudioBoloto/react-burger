@@ -7,6 +7,13 @@ const config = {
     }
 }
 
+function request(endpoint: string, options: RequestInit) {
+    return fetch(`${config.baseUrl}${endpoint}`, options)
+        .then((res: Response) => {
+            return checkServerResponse(res);
+        })
+}
+
 function checkServerResponse(res: Response) {
     if (res.ok) {
         return res.json();
@@ -15,12 +22,9 @@ function checkServerResponse(res: Response) {
 }
 
 export const getIngredients = (): Promise<[]> => {
-    return fetch(`${config.baseUrl}/ingredients`, {
+    return request('/ingredients', {
         headers: config.headers
     })
-        .then((res: Response) => {
-            return checkServerResponse(res);
-        })
         .then((data) => {
             return data.data;
         })
@@ -33,14 +37,11 @@ export const createOrder = (ingredients: string[]): Promise<IOrderResponse> => {
     const body = {
         ingredients
     };
-    return fetch(`${config.baseUrl}/orders`, {
+    return request('/orders', {
         method: 'POST',
         headers: config.headers,
         body: JSON.stringify(body)
     })
-        .then((res: Response) => {
-            return checkServerResponse(res);
-        })
         .then((data) => {
             return data;
         })

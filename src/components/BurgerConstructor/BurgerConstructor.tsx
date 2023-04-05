@@ -11,11 +11,12 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import {ProductsContext} from "../../services/productsContext";
 import {IOrder, IProduct} from "../../models";
-import {createOrder} from "../Api";
+import {createOrder} from "../../services/Api";
 
 interface State {
     totalPrice: number;
     ingredientsIds: string[];
+    basket: IProduct[];
 }
 
 interface Action {
@@ -25,24 +26,39 @@ interface Action {
 
 export function BurgerConstructor() {
     const products = useContext(ProductsContext);
-    const initialState = {totalPrice: 0, ingredientsIds: []};
+    const initialState = {totalPrice: 0, ingredientsIds: [], basket: []};
+    const [bun, setBun] = useState<IProduct>(products.filter((product) => product.type === "bun")[0]);
     const [isOpen, setIsOpen] = useState(false);
     const [state, dispatch] = useReducer(reducer, initialState);
     const [orderId, setOrderId] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [hasError, setHasError] = useState(false);
 
+
     function reducer(state: State, action: Action) {
+        let totalPrice = state.totalPrice;
+        let ingredientsIds = state.ingredientsIds;
+        let basket = state.basket;
         switch (action.type) {
             case 'increment':
+                if (action.product.type === 'bun') {
+                    totalPrice += action.product.price;
+                    ingredientsIds = [action.product._id, ...ingredientsIds];
+                    basket = [action.product, ...state.basket];
+                }
                 return {
-                    totalPrice: state.totalPrice + action.product.price,
-                    ingredientsIds: [...state.ingredientsIds, action.product._id]
+                    totalPrice: totalPrice + action.product.price,
+                    ingredientsIds: [...ingredientsIds, action.product._id],
+                    basket: [...basket, action.product],
                 };
             case 'decrement':
+                if (action.product.type === 'bun') {
+                    totalPrice -= action.product.price;
+                }
                 return {
-                    totalPrice: state.totalPrice - action.product.price,
-                    ingredientsIds: state.ingredientsIds.filter(id => id !== action.product._id)
+                    totalPrice: totalPrice - action.product.price,
+                    ingredientsIds: state.ingredientsIds.filter(id => id !== action.product._id),
+                    basket: state.basket.filter(product => product !== action.product),
                 };
             default:
                 console.log(`Wrong type of action: ${action.type}`);
@@ -50,10 +66,12 @@ export function BurgerConstructor() {
         }
     }
 
+    const middleProducts = products.filter((product) => product.type !== "bun");
     useEffect(() => {
-        products.map((product) => dispatch({type: 'increment', product: product}))
+        setBun(products.filter((product) => product.type === "bun")[1]);
+        dispatch({type: 'increment', product: bun});
+        middleProducts.map((product) => dispatch({type: 'increment', product: product}))
     }, []);
-    const middleProducts = products.slice(1, -1);
 
     const orderDetailsData: IOrder = {
         ...data[0],
@@ -66,10 +84,11 @@ export function BurgerConstructor() {
         createOrder(state.ingredientsIds)
             .then((data) => {
                 setOrderId(data.order.number.toString());
-                setIsLoading(false);
             })
             .catch(e => {
                 setHasError(true);
+            })
+            .finally(() => {
                 setIsLoading(false);
             });
     };
@@ -82,7 +101,7 @@ export function BurgerConstructor() {
         <div className={`${styles.BurgerConstructor} pt-25 pl-4`}>
             <section className={styles.productSection}>
                 <div className={`${styles.productElement} mr-2`} key={products[0]._id}>
-                    <ProductItem product={products[0]} type="top"/>
+                    {state.basket[0] && <ProductItem product={state.basket[0]} type="top"/>}
                 </div>
                 <div className={`${commonStyles.scrollContainer} ${commonStyles.scrollContainerSmall}`}>
                     {middleProducts.map((product) => (
@@ -93,7 +112,7 @@ export function BurgerConstructor() {
                     ))}
                 </div>
                 <div className={`${styles.productElement} mr-2`} key={products[products.length - 1]._id}>
-                    <ProductItem product={products[products.length - 1]} type="bottom"/>
+                    {state.basket[0] && <ProductItem product={state.basket[0]} type="bottom"/>}
                 </div>
             </section>
             <section className={`${styles.checkOutSection} mt-10`}>

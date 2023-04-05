@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5cbf8a4-488a-4b88-8d3b-3bccfc15b865" name="Changes" comment="create main">
-      <change afterPath="$PROJECT_DIR$/src/services/productsContext.tsx" afterDir="false" />
+    <list default="true" id="d5cbf8a4-488a-4b88-8d3b-3bccfc15b865" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Api.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Api.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Api.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/Api.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App/App.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BurgerConstructor/BurgerConstructor.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BurgerConstructor/BurgerConstructor.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/BurgerConstructor/BurgerConstructor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BurgerConstructor/BurgerConstructor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BurgerIngredients/BurgerIngredients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BurgerIngredients/BurgerIngredients.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/IngredientDetails/IngredientDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/IngredientDetails/IngredientDetails.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/IngredientsItems/IngredientsItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/IngredientsItems/IngredientsItems.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ModalOverlay/ModalOverlay.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalOverlay/ModalOverlay.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProductItem/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProductItem/ProductItem.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +43,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/services" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -74,6 +84,7 @@
       <updated>1678351583520</updated>
       <workItem from="1678351634278" duration="1237000" />
       <workItem from="1678352974148" duration="572000" />
+      <workItem from="1680684922933" duration="11383000" />
     </task>
     <task id="LOCAL-00001" summary="7 month step 1">
       <created>1678352783890</created>
@@ -89,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678353052688</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit for review">
+      <created>1680642366129</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680642366129</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +128,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="7 month step 1" />
     <MESSAGE value="create main" />
-    <option name="LAST_COMMIT_MESSAGE" value="create main" />
+    <MESSAGE value="commit for review" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit for review" />
   </component>
 </project>

@@ -3,7 +3,7 @@ import {AppHeader} from "../AppHeader/AppHeader";
 import {BurgerIngredients} from "../BurgerIngredients/BurgerIngredients";
 import {BurgerConstructor} from "../BurgerConstructor/BurgerConstructor";
 import {useEffect, useState} from "react";
-import {getIngredients} from "../Api";
+import {getIngredients} from "../../services/Api";
 import {ProductsContext} from "../../services/productsContext";
 
 function App() {
