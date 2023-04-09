@@ -8,11 +8,17 @@ interface ProductProps {
 }
 
 export function ProductItem({product, type}: ProductProps) {
+    const text =
+        type === "top"
+            ? `${product.name} (верх)`
+            : type === "bottom"
+                ? `${product.name} (низ)`
+                : product.name;
     return (
         <ConstructorElement
             type={type}
-            isLocked={true}
-            text={product.name}
+            isLocked={!!type}
+            text={text}
             price={product.price}
             thumbnail={product.image}
         />

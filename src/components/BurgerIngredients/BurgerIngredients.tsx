@@ -1,17 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './BurgerIngredients.module.css'
 import commonStyles from '../App/App.module.css'
 import {IngredientsTitle} from "../IngredientsTitle/IngredientsTitle";
 import {IngredientsItems} from "../IngredientsItems/IngredientsItems";
 import {Tabs} from "../Tabs/Tabs";
-import {IProduct} from "../../models";
+import {ProductsContext} from "../../services/productsContext";
 
-
-interface ProductsProps {
-    products: IProduct[];
-}
-
-export function BurgerIngredients({products}: ProductsProps) {
+export function BurgerIngredients() {
+    const products = useContext(ProductsContext);
     return (
         <section className={`${styles.BurgerIngredients} pt-10 mr-10`}>
             <IngredientsTitle className="text_type_main-large">Соберите бургер</IngredientsTitle>

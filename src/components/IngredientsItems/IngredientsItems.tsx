@@ -3,7 +3,7 @@ import {IProduct} from "../../models";
 import styles from "../IngredientsItems/IngredientsItems.module.css";
 import {Product} from "../Product/Product";
 import {IngredientDetails} from '../IngredientDetails/IngredientDetails'
-
+import {Modal} from "../Modal/Modal";
 
 interface ProductsProps {
     products: IProduct[];
@@ -33,10 +33,11 @@ export const IngredientsItems = ({products, type}: ProductsProps) => {
                     </span>
             ))}
             <div style={{overflow: 'hidden'}}>
-                {selectedProduct && <IngredientDetails
-                    product={selectedProduct}
-                    onClose={handleCloseModal}
-                />}
+                {selectedProduct &&
+                    <Modal header="Детали ингредиента" onClose={handleCloseModal}>
+                        <IngredientDetails product={selectedProduct}/>
+                    </Modal>
+                }
             </div>
         </div>
     )

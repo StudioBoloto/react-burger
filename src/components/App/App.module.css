@@ -16,7 +16,9 @@
 }
 
 .scrollContainerSmall {
-    height: 464px !important;
+    /*height: 464px !important;*/
+    height: 100%;
+    max-height: 464px;
 }
 
 .scrollContainer::-webkit-scrollbar {

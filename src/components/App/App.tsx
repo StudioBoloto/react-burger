@@ -3,8 +3,8 @@ import {AppHeader} from "../AppHeader/AppHeader";
 import {BurgerIngredients} from "../BurgerIngredients/BurgerIngredients";
 import {BurgerConstructor} from "../BurgerConstructor/BurgerConstructor";
 import {useEffect, useState} from "react";
-import {getIngredients} from "../Api";
-
+import {getIngredients} from "../../services/Api";
+import {ProductsContext} from "../../services/productsContext";
 
 function App() {
     const [products, setProducts] = useState([]);
@@ -24,17 +24,17 @@ function App() {
     }, []);
 
     return (
-        <>
+        <ProductsContext.Provider value={products}>
             {!isLoading && !hasError && products.length && (
                 <div className={`${styles.App} ${styles.page}`}>
                     <AppHeader/>
                     <main className={`${styles.App} mb-10`}>
-                        <BurgerIngredients products={products}/>
-                        <BurgerConstructor products={products}/>
+                        <BurgerIngredients />
+                        <BurgerConstructor />
                     </main>
                 </div>
             )}
-        </>
+        </ProductsContext.Provider>
     );
 }
 
