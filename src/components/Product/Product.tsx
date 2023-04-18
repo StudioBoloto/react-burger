@@ -1,26 +1,19 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from "../Product/Product.module.css";
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {IProduct} from "../../models";
 
 interface ProductProps {
     product: IProduct;
-    quantity: number;
     onClick: () => void;
 }
 
-export function Product({product, quantity, onClick}: ProductProps) {
-    const [count, setCount] = useState(quantity);
-    const handleClick = () => {
-        setCount(count + 1);
-    };
-
+export function Product({product, onClick}: ProductProps) {
     return (
         <span className={`${styles.Product} mt-6 ml-4 mr-2 mb-2`} onClick={() => {
             onClick();
-            handleClick();
         }}>
-            {count > 0 && <Counter count={count} size="default"/>}
+            {product.count > 0 && <Counter count={product.count} size="default"/>}
             <span className="ml-4 mr-4">
                 <img src={product.image} alt={product.name}/>
             </span>
