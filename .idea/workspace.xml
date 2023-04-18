@@ -4,36 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5cbf8a4-488a-4b88-8d3b-3bccfc15b865" name="Changes" comment="create main">
-      <change afterPath="$PROJECT_DIR$/src/components/DragAndDropContainer/DragAndDropContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DraggableContainer/DraggableContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DraggableIngredient/DraggableIngredient.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DraggableItem/DraggableItem.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/DropTarget/DropTarget.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Root/Root.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/actions/ingredientActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/actions/ingredientDetailsActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/actions/orderActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/actions/productActions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/reducers/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/reducers/ingredientDetailsReduser.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/reducers/ingredientReducer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/reducers/orderReducer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/reducers/productReducer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/reducers/store.tsx" afterDir="false" />
+    <list default="true" id="d5cbf8a4-488a-4b88-8d3b-3bccfc15b865" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BurgerConstructor/BurgerConstructor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BurgerConstructor/BurgerConstructor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BurgerIngredients/BurgerIngredients.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BurgerIngredients/BurgerIngredients.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/IngredientsItems/IngredientsItems.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/IngredientsItems/IngredientsItems.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Product/Product.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product/Product.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProductItem/ProductItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProductItem/ProductItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Tabs/Tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Tabs/Tabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/reducers/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/reducers/store.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +96,8 @@
       <workItem from="1681752669996" duration="6272000" />
       <workItem from="1681758966700" duration="3721000" />
       <workItem from="1681814760817" duration="3445000" />
-      <workItem from="1681818784528" duration="9410000" />
+      <workItem from="1681818784528" duration="10051000" />
+      <workItem from="1681845511632" duration="2189000" />
     </task>
     <task id="LOCAL-00001" summary="7 month step 1">
       <created>1678352783890</created>
@@ -146,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680642366129</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit for review">
+      <created>1681828653950</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681828653950</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
