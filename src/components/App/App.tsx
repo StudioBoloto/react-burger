@@ -1,41 +1,35 @@
 import styles from './App.module.css'
 import {AppHeader} from "../AppHeader/AppHeader";
-import {BurgerIngredients} from "../BurgerIngredients/BurgerIngredients";
-import {BurgerConstructor} from "../BurgerConstructor/BurgerConstructor";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {getIngredients} from "../../services/Api";
-import {ProductsContext} from "../../services/productsContext";
+import {useDispatch, useSelector} from 'react-redux';
+import {getProductsFailure, getProductsRequest, getProductsSuccess} from "../../services/actions/productActions";
+import {RootState} from '../../services/reducers/store';
+import DragAndDropContainer from "../DragAndDropContainer/DragAndDropContainer";
 
-function App() {
-    const [products, setProducts] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasError, setHasError] = useState(false);
+export function App() {
+    const {isLoading, hasError, products} = useSelector((state: RootState) => state.products);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        setIsLoading(true);
+        dispatch(getProductsRequest());
         getIngredients().then((data) => {
-            setProducts(data);
-            setIsLoading(false);
-        })
-            .catch(e => {
-                setHasError(true);
-                setIsLoading(false);
-            });
-    }, []);
+            dispatch(getProductsSuccess(data));
+        }).catch((error) => {
+            dispatch(getProductsFailure(error));
+        });
+    }, [dispatch]);
 
     return (
-        <ProductsContext.Provider value={products}>
+        <>
             {!isLoading && !hasError && products.length && (
                 <div className={`${styles.App} ${styles.page}`}>
                     <AppHeader/>
                     <main className={`${styles.App} mb-10`}>
-                        <BurgerIngredients />
-                        <BurgerConstructor />
+                        <DragAndDropContainer/>
                     </main>
                 </div>
             )}
-        </ProductsContext.Provider>
+        </>
     );
 }
-
-export default App;

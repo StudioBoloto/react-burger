@@ -11,6 +11,8 @@ export interface IProduct {
     "image_mobile": string
     "image_large": string
     "__v": number
+    "count" : number
+    "id" : string
 }
 
 export interface IOrder {

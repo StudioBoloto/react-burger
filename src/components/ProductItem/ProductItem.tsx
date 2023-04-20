@@ -5,9 +5,10 @@ import React from "react";
 interface ProductProps {
     product: IProduct
     type?: "top" | "bottom" | undefined;
+    onClick?: (product: IProduct) => void;
 }
 
-export function ProductItem({product, type}: ProductProps) {
+export function ProductItem({product, type, onClick}: ProductProps) {
     const text =
         type === "top"
             ? `${product.name} (верх)`
@@ -21,6 +22,7 @@ export function ProductItem({product, type}: ProductProps) {
             text={text}
             price={product.price}
             thumbnail={product.image}
+            handleClose={() => onClick ? onClick(product) : undefined}
         />
     )
 }
