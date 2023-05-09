@@ -1,11 +1,12 @@
 import styles from './App.module.css'
 import {AppHeader} from "../AppHeader/AppHeader";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {getIngredients} from "../../services/Api";
 import {useDispatch, useSelector} from 'react-redux';
 import {getProductsFailure, getProductsRequest, getProductsSuccess} from "../../services/actions/productActions";
 import {RootState} from '../../services/reducers/store';
 import DragAndDropContainer from "../DragAndDropContainer/DragAndDropContainer";
+import {Outlet} from "react-router-dom";
 
 export function App() {
     const {isLoading, hasError, products} = useSelector((state: RootState) => state.products);
@@ -24,12 +25,13 @@ export function App() {
         <>
             {!isLoading && !hasError && products.length && (
                 <div className={`${styles.App} ${styles.page}`}>
-                    <AppHeader/>
+                    <AppHeader selected={"Конструктор"}/>
                     <main className={`${styles.App} mb-10`}>
                         <DragAndDropContainer/>
                     </main>
                 </div>
             )}
+            <Outlet/>
         </>
     );
 }

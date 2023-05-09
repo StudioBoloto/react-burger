@@ -23,6 +23,7 @@ const productReducer = createReducer(initialState, (builder) => {
             }
         })
         .addCase(getProductsSuccess, (state, action) => {
+            localStorage.setItem('products', JSON.stringify(action.payload));
             return {
                 ...state,
                 products: action.payload,
