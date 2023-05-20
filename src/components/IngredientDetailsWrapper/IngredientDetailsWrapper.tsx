@@ -10,17 +10,15 @@ export const IngredientDetailsWrapper = () => {
     const {id} = useParams<{ id: string }>();
     const products: IProduct[] = JSON.parse(localStorage.getItem('products') || '[]');
     const ingredient = products.find((product) => product._id === id);
-    const isModalOpen = localStorage.getItem("modalOpen") === "true";
-    const location = useLocation();
     const navigate = useNavigate();
-    const isModal = location.state && location.state.modal;
+    const location = useLocation();
+    const modal = location.state?.modal;
 
     const closeModal = () => {
-        localStorage.removeItem("modalOpen");
         navigate("/");
     }
 
-    if (isModal && isModalOpen && ingredient) {
+    if (modal && ingredient) {
         return (
             <div style={{overflow: 'hidden'}}>
                 <Modal header="Детали ингредиента" onClose={closeModal}>
@@ -28,7 +26,7 @@ export const IngredientDetailsWrapper = () => {
                 </Modal>
             </div>
         );
-    } else if (ingredient && !isModalOpen) {
+    } else if (!modal && ingredient) {
         return (
             <Ingredients product={ingredient}/>
         );

@@ -1,5 +1,4 @@
 import styles from './App.module.css'
-import {AppHeader} from "../AppHeader/AppHeader";
 import React, {useEffect} from "react";
 import {getIngredients} from "../../services/Api";
 import {useDispatch, useSelector} from 'react-redux';
@@ -25,7 +24,6 @@ export function App() {
         <>
             {!isLoading && !hasError && products.length && (
                 <div className={`${styles.App} ${styles.page}`}>
-                    <AppHeader selected={"Конструктор"}/>
                     <main className={`${styles.App} mb-10`}>
                         <DragAndDropContainer/>
                     </main>

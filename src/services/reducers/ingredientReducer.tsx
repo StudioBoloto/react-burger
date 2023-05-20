@@ -1,5 +1,11 @@
 import {createReducer, current} from '@reduxjs/toolkit';
-import {addIngredient, removeIngredient, replaceIngredient, sortIngredient} from "../actions/ingredientActions";
+import {
+    addIngredient,
+    clearOrder,
+    removeIngredient,
+    replaceIngredient,
+    sortIngredient
+} from "../actions/ingredientActions";
 import {IProduct} from "../../models";
 
 interface State {
@@ -76,6 +82,9 @@ const ingredientReducer = createReducer(initialState, (builder => {
                 const {oldIndex, newIndex} = action.payload;
                 const [removed] = state.basket.splice(oldIndex, 1);
                 state.basket.splice(newIndex, 0, removed);
+            })
+            .addCase(clearOrder, (state, action) => {
+                return initialState;
             });
     })
 );

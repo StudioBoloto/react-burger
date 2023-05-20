@@ -9,6 +9,8 @@ import {passwordReducer} from "./passwordReducer";
 import {emailReducer} from "./emailReducer";
 import {profileReducer} from "./profileReducer";
 import {nameReducer} from "./nameReducer";
+import userReducer from './userReducer';
+import authReducer from "./authReducer";
 
 const rootReducer = combineReducers({
     products: productReducer,
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
     email: emailReducer,
     password: passwordReducer,
     profile: profileReducer,
+    user: userReducer,
+    auth: authReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

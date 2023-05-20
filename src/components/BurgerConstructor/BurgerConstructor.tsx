@@ -12,9 +12,10 @@ import {IOrder} from "../../models";
 import {createOrder} from "../../services/Api";
 import {RootState} from '../../services/reducers/store';
 import {postOrderFailure, postOrderRequest, postOrderSuccess} from "../../services/actions/orderActions";
-//@ts-ignore
-import {v4 as uuid} from 'uuid';
 import {DraggableContainer} from "../DraggableContainer/DraggableContainer";
+import {useNavigate} from "react-router-dom";
+import {clearOrder} from "../../services/actions/ingredientActions";
+import Loader from "../Loader/Loader";
 
 interface OrderState {
     isLoading: boolean;
@@ -25,6 +26,8 @@ interface OrderState {
 }
 
 export function BurgerConstructor() {
+    const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const orderState: OrderState = useSelector((state: RootState) => state.order);
     const ingredientsState = useSelector((state: RootState) => state.ingredients);
@@ -36,6 +39,13 @@ export function BurgerConstructor() {
         _id: order.number
     };
     const handleButtonClick = () => {
+        if (!isLoggedIn) {
+            navigate("/login");
+            return;
+        }
+        if (!bun) {
+            return;
+        }
         setIsOpen(true);
         dispatch(postOrderRequest());
         createOrder(ingredientsIds).then((data) => {
@@ -47,16 +57,17 @@ export function BurgerConstructor() {
 
     const handleCloseModal = () => {
         setIsOpen(false);
+        dispatch(clearOrder());
     };
 
     return (
         <div className={`${styles.BurgerConstructor} pt-25 pl-4`}>
             <section className={styles.productSection}>
-                <div className={`${styles.productElement} mr-2`} key={uuid()}>
+                <div className={`${styles.productElement} mr-2`} key={0}>
                     {bun && <ProductItem product={bun} type="top"/>}
                 </div>
                 <DraggableContainer/>
-                <div className={`${styles.productElement} mr-2`} key={uuid()}>
+                <div className={`${styles.productElement} mr-2`} key={-1}>
                     {bun && <ProductItem product={bun} type="bottom"/>}
                 </div>
             </section>
@@ -70,6 +81,7 @@ export function BurgerConstructor() {
                 </Button>
             </section>
             <div style={{overflow: 'hidden'}}>
+                {isLoading && <Loader/>}
                 {isOpen && <OrderDetails
                     data={orderDetailsData}
                     onClose={handleCloseModal}

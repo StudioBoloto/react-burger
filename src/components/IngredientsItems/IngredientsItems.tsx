@@ -4,7 +4,7 @@ import styles from "../IngredientsItems/IngredientsItems.module.css";
 import {DraggableIngredient} from "../DraggableIngredient/DraggableIngredient";
 import {useDispatch} from "react-redux";
 import {getIngredientInfo} from "../../services/actions/ingredientDetailsActions";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface ProductsProps {
     products: IProduct[];
@@ -12,15 +12,15 @@ interface ProductsProps {
 }
 
 export const IngredientsItems = ({products, type}: ProductsProps) => {
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const filteredProducts = useMemo(() => products.filter(product => product.type === type),
         [products, type]);
 
     const handleOpenModal = (product: IProduct) => {
-        localStorage.setItem("modalOpen", "true");
         dispatch(getIngredientInfo(product));
-        navigate(`/ingredients/${product._id}`, {state: {modal: true}});
+        navigate(`/ingredients/${product._id}`, { state: { modal: true, background: location } });
     }
 
     return (
