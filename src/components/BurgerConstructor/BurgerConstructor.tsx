@@ -9,13 +9,14 @@ import {
     CurrencyIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 import {IOrder} from "../../models";
-import {createOrder} from "../../services/Api";
 import {RootState} from '../../services/reducers/store';
-import {postOrderFailure, postOrderRequest, postOrderSuccess} from "../../services/actions/orderActions";
 import {DraggableContainer} from "../DraggableContainer/DraggableContainer";
 import {useNavigate} from "react-router-dom";
 import {clearOrder} from "../../services/actions/ingredientActions";
 import Loader from "../Loader/Loader";
+import {ThunkDispatch} from "redux-thunk";
+import {AnyAction} from "redux";
+import {createOrder} from "../../services/actions/orderActions";
 
 interface OrderState {
     isLoading: boolean;
@@ -28,7 +29,7 @@ interface OrderState {
 export function BurgerConstructor() {
     const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
     const orderState: OrderState = useSelector((state: RootState) => state.order);
     const ingredientsState = useSelector((state: RootState) => state.ingredients);
     const {isLoading, hasError, order} = orderState;
@@ -47,12 +48,7 @@ export function BurgerConstructor() {
             return;
         }
         setIsOpen(true);
-        dispatch(postOrderRequest());
-        createOrder(ingredientsIds).then((data) => {
-            dispatch(postOrderSuccess(data));
-        }).catch((error) => {
-            dispatch(postOrderFailure(error));
-        });
+        dispatch(createOrder(ingredientsIds) as any);
     };
 
     const handleCloseModal = () => {

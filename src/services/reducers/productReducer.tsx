@@ -1,46 +1,47 @@
-import {createReducer} from '@reduxjs/toolkit'
-import {
-    getProductsRequest,
-    getProductsSuccess,
-    getProductsFailure,
-    updateProductCount
-} from "../actions/productActions";
+import {createSlice} from '@reduxjs/toolkit';
 import {IProduct} from "../../models";
+import {getProducts, updateProductCount} from "../actions/productActions";
 
-const initialState = {
+interface ProductState {
+    products: IProduct[];
+    isLoading: boolean;
+    hasError: boolean;
+    error: string | undefined;
+}
+
+const initialState: ProductState = {
     products: [] as IProduct[],
     isLoading: false,
     hasError: false,
+    error: undefined,
 };
 
-const productReducer = createReducer(initialState, (builder) => {
-    builder
-        .addCase(getProductsRequest, (state, action) => {
-            return {
-                ...state,
-                isLoading: true,
-                hasError: false,
-            }
-        })
-        .addCase(getProductsSuccess, (state, action) => {
-            localStorage.setItem('products', JSON.stringify(action.payload));
-            return {
-                ...state,
-                products: action.payload,
-                isLoading: false,
-                hasError: false,
-            }
-        })
-        .addCase(getProductsFailure, (state, action) => {
-            return {
-                ...state,
-                isLoading: false,
-                hasError: true,
-            }
-        })
-        .addCase(updateProductCount, (state, action) => {
-            state.products = action.payload;
-        });
-})
+const productSlice = createSlice({
+    name: 'ingredient',
+    initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(getProducts.pending, (state) => {
+                state.isLoading = true;
+                state.hasError = false;
+                state.error = undefined;
+            })
+            .addCase(getProducts.fulfilled, (state, action) => {
+                state.products = action.payload.data;
+                state.isLoading = false;
+                state.hasError = false;
+                state.error = undefined;
+            })
+            .addCase(getProducts.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+                state.error = action.error.message;
+            })
+            .addCase(updateProductCount, (state, action) => {
+                state.products = action.payload;
+            });
+    },
+});
 
-export default productReducer;
+export default productSlice.reducer;

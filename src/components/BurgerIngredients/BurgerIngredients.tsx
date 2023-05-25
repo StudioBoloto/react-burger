@@ -26,7 +26,7 @@ export function BurgerIngredients() {
     return (
         <section className={`${styles.BurgerIngredients} pt-10 mr-10`}>
             <IngredientsTitle className="text_type_main-large">Соберите бургер</IngredientsTitle>
-            <Tabs bunsRef={bunsRef} saucesRef={saucesRef} mainsRef={mainsRef} />
+            <Tabs bunsRef={bunsRef} saucesRef={saucesRef} mainsRef={mainsRef}/>
             <section className={`${commonStyles.scrollContainer}`} id={'scrollContainer'}>
                 <div ref={bunsRef}>
                     <IngredientsTitle className="text_type_main-medium mt-10">Булки</IngredientsTitle>

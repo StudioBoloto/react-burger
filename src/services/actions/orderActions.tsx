@@ -1,6 +1,22 @@
-import { createAction } from '@reduxjs/toolkit'
+import {createAsyncThunk} from '@reduxjs/toolkit'
 import {IOrderResponse} from "../../models";
+import {config, request} from "../Api";
 
-export const postOrderRequest = createAction('POST_ORDER_REQUEST')
-export const postOrderSuccess = createAction<IOrderResponse>('POST_ORDER_SUCCESS')
-export const postOrderFailure = createAction('POST_ORDER_FAILURE')
+export const createOrder = createAsyncThunk<IOrderResponse, string[]>(
+    'orders/create',
+    async (ingredients: string[]) => {
+        const body = {
+            ingredients
+        };
+        try {
+            const response = await request('/orders', {
+                method: 'POST',
+                headers: config.headers,
+                body: JSON.stringify(body)
+            });
+            return await response;
+        } catch (error: any) {
+            throw new Error(`Ошибка создания заказа: ${error.message}`);
+        }
+    }
+);
