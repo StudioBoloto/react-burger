@@ -22,7 +22,7 @@ export const Login = () => {
         dispatch(loginUser({
             body: {email: email, password: password},
             navigate: navigate,
-            navigateTo: (location.state?.from || '/')
+            navigateTo: (location.state?.from || '/'),
         }));
     };
 

@@ -17,6 +17,7 @@ export const loginUser = createAsyncThunk(
             });
             const data = await response;
             localStorage.setItem('userData', JSON.stringify(data));
+            console.log("loginUser and then navigateTo: ", navigateTo);
             navigate(navigateTo);
             return data;
         } catch (error: any) {

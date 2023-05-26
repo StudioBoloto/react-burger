@@ -21,7 +21,8 @@ export const ModalSwitch = () => {
                 <Route path="/ingredients/:id" element={<IngredientDetailsWrapper/>}/>
                 <Route
                     path="/login"
-                    element={<ProtectedRouteElement element={Login} anonymous={true}/>}
+                    element={<ProtectedRouteElement element={Login} anonymous={true}
+                                                    previousPath={location.state?.from || '/'}/>}
                 />
                 <Route
                     path="/register"
