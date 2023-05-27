@@ -1,12 +1,19 @@
 import React from 'react';
 import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 import store from "../../services/reducers/store";
-import {App} from '../App/App';
+import {AppHeader} from "../AppHeader/AppHeader";
+import {ModalSwitch} from "../ModalSwitch/ModalSwitch";
 
-const Root = () => (
-    <Provider store={store}>
-        <App/>
-    </Provider>
-);
+const Root = () => {
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <AppHeader/>
+                <ModalSwitch/>
+            </BrowserRouter>
+        </Provider>
+    );
+};
 
 export default Root;

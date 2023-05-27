@@ -11,14 +11,14 @@ const initialState: State = {
 };
 
 const ingredientDetailsReducer = createReducer(initialState, (builder => {
-    builder
-        .addCase(getIngredientInfo, (state, action) => {
-            if (action.payload) {
-                state.ingredient = action.payload;
-            } else {
-                state.ingredient = undefined;
-            }
-        })
+        builder
+            .addCase(getIngredientInfo, (state, action) => {
+                if (action.payload) {
+                    state.ingredient = action.payload;
+                } else {
+                    state.ingredient = undefined;
+                }
+            })
     })
 );
 
