@@ -23,10 +23,16 @@ export const OrdersHistory = () => {
     const navigate = useNavigate();
     const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
     const orders = useSelector((state: RootState) => state.orders);
-    const ordersInfo = orders.allOrders;
+    const ordersInfo = orders.userOrders;
 
     useEffect(() => {
-        dispatch(setConnection(config.wsUrlOrdersAll));
+        const savedUserData = localStorage.getItem('userData');
+        if (savedUserData) {
+            const userData = JSON.parse(savedUserData);
+            const accessToken = userData.accessToken ?? '';
+            const token = accessToken.substring(7) ?? '';
+            dispatch(setConnection(`${config.wsUrlOrders}?token=${token}`));
+        }
         return () => {
             dispatch(closeConnection);
         }

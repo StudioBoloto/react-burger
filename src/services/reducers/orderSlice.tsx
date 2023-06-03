@@ -1,6 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {IOrdersInfo} from "../../models";
 
+const authorizedActions = ['orders/setUserOrders'];
+const unauthorizedActions = ['orders/setAllOrders'];
+
+export const socketMiddlewareOptions = {
+    authorizedActions,
+    unauthorizedActions
+};
+
 interface OrdersState {
     isConnected: boolean;
     userOrders: IOrdersInfo | undefined;

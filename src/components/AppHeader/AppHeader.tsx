@@ -12,6 +12,8 @@ import {getUser} from "../../services/actions/userActions";
 import {ThunkDispatch} from "redux-thunk";
 import {RootState} from "../../services/reducers/store";
 import {AnyAction} from "redux";
+import {changeName} from "../../services/actions/nameActions";
+import {changeEmail} from "../../services/actions/emailActions";
 
 interface HeaderProps {
     children: React.ReactNode;
@@ -62,6 +64,7 @@ export function AppHeader() {
     }
 
     const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+
     useEffect(() => {
         const savedUserData = localStorage.getItem('userData');
         const token = localStorage.getItem('accessToken') ?? '';
@@ -69,6 +72,10 @@ export function AppHeader() {
             const userData = JSON.parse(savedUserData);
             const accessToken = userData.accessToken ?? '';
             dispatch(getUser({token: accessToken}));
+
+            dispatch(changeName(userData.user.name));
+            dispatch(changeEmail(userData.user.email));
+
         } else if (token) {
             dispatch(getUser({token: token}));
         } else {return}

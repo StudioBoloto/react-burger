@@ -1,6 +1,12 @@
 import {setAllOrders, setConnectionStatus, setUserOrders} from "../reducers/orderSlice";
+import {Middleware} from "redux";
 
-export const socketMiddleware = () => {
+interface SocketMiddlewareOptions {
+    authorizedActions: string[];
+    unauthorizedActions: string[];
+}
+
+export const socketMiddleware = (options: SocketMiddlewareOptions): Middleware => {
     return (store: { dispatch: any; getState: any; }) => {
         let socket: WebSocket | null = null;
 
@@ -19,11 +25,16 @@ export const socketMiddleware = () => {
 
                     socket.onmessage = (event) => {
                         const data = JSON.parse(event.data);
-                        const isUserOrders = (event.currentTarget as WebSocket)?.url?.includes('token');
-                        if (isUserOrders) {
-                            store.dispatch(setUserOrders(data));
+                        const isAuthorized = (event.currentTarget as WebSocket)?.url?.includes('token');
+                        const { authorizedActions, unauthorizedActions } = options;
+                        if (isAuthorized) {
+                            authorizedActions.forEach(actionType => {
+                                store.dispatch({ type: actionType, payload: data });
+                            });
                         } else {
-                            store.dispatch(setAllOrders(data));
+                            unauthorizedActions.forEach(actionType => {
+                                store.dispatch({ type: actionType, payload: data });
+                            });
                         }
                     };
 

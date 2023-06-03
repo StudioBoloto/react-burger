@@ -3,11 +3,14 @@ import {RootState} from "../../services/reducers/store";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {getProducts} from "../../services/actions/productActions";
 import {Modal} from "../Modal/Modal";
 import {NotFound404} from "../../pages/NotFound404/NotFound404";
 import {OrderInfo} from "../OrderInfo/OrderInfo";
+import {closeConnection, setConnection} from "../../services/reducers/orderSlice";
+import {config} from "../../services/Api";
+import Loader from "../Loader/Loader";
 
 
 export const OrdersInfoWrapper = () => {
@@ -18,11 +21,27 @@ export const OrdersInfoWrapper = () => {
     const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        dispatch(setConnection(config.wsUrlOrdersAll));
+        return () => {
+            dispatch(closeConnection);
+        }
+    }, [dispatch])
+
+    useEffect(() => {
+        if (ordersInfo) {
+            setIsLoading(false);
+        }
+    }, [ordersInfo]);
+
     useEffect(() => {
         if (!products.length) {
             dispatch(getProducts());
         }
     }, [dispatch, products.length]);
+
     const order = ordersInfo?.orders.find((order) => order._id === id);
     const modal = location.state?.modal;
 
@@ -30,6 +49,19 @@ export const OrdersInfoWrapper = () => {
         console.log("closing modal and navigating to ", location.state?.from)
         navigate(location.state?.from || "/feed");
     }
+    if (isLoading) {
+        return (
+            <div style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "100vh",
+            }}>
+                <Loader/>
+            </div>
+        );
+    }
+
     if (modal && order) {
         return (
             <div style={{overflow: 'hidden'}}>

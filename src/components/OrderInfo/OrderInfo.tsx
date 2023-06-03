@@ -3,6 +3,7 @@ import {OrderIngredients} from "../OrderIngredients/OrderIngredients";
 import {useSelector} from "react-redux";
 import {RootState} from "../../services/reducers/store";
 import {OrderIngredientsPreview} from "../OrderIngredientsPreview/OrderIngredientsPreview";
+import {useMemo} from "react";
 
 export const OrderInfo = ({
                               order,
@@ -32,9 +33,12 @@ export const OrderInfo = ({
             }
         }
     });
-    const totalAmount = orderProducts.reduce((accumulator, product) => {
-        return accumulator + product.price * product.count;
-    }, 0);
+
+    const totalAmount = useMemo(() => {
+        return orderProducts.reduce((accumulator, product) => {
+            return accumulator + product.price * product.count;
+        }, 0);
+    }, [orderProducts]);
 
     const statusMapping: { [key: string]: string } = {
         created: "Создан",

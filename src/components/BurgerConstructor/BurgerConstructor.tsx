@@ -48,7 +48,10 @@ export function BurgerConstructor() {
             return;
         }
         setIsOpen(true);
-        dispatch(createOrder(ingredientsIds) as any);
+        const savedUserData = localStorage.getItem('userData');
+        const userData = savedUserData ? JSON.parse(savedUserData) : null;
+        const accessToken = userData.accessToken ?? '';
+        dispatch(createOrder({ingredients:ingredientsIds, token: accessToken}) as any);
     };
 
     const handleCloseModal = () => {
