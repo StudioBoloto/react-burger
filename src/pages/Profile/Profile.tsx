@@ -56,7 +56,7 @@ export const Profile = () => {
                 <div className={styles.navigation}>
                     <Link to='/profile' className={`text text_type_main-medium 
                 ${styles.navigation_element}`}>Профиль</Link>
-                    <Link to='*' className={`text text_type_main-medium text_color_inactive navigation_element 
+                    <Link to='/profile/orders' className={`text text_type_main-medium text_color_inactive navigation_element 
                       ${styles.navigation_element}`}>История заказов</Link>
                     <Link to='/login' onClick={handleLogoutClick} className={`text text_type_main-medium text_color_inactive navigation_element mb-20 
                 ${styles.navigation_element}`}>Выход</Link>

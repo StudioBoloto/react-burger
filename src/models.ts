@@ -22,6 +22,41 @@ export interface IOrder {
     "image": string
 }
 
+export interface IOrderProduct {
+    _id: string;
+    name: string;
+    price: number;
+    image_mobile: string;
+    count: number;
+}
+
+export interface IOrdersInfo {
+    success: boolean;
+    orders: {
+        ingredients: string[];
+        _id: string;
+        status: string;
+        name: string;
+        number: number;
+        createdAt: string;
+        updatedAt: string;
+    }[];
+    total: number;
+    totalToday: number;
+}
+
+export interface IOrderInfo {
+    order: {
+        ingredients: string[];
+        _id: string;
+        status: string;
+        name: string;
+        number: number;
+        createdAt: string;
+        updatedAt: string;
+    };
+}
+
 export interface IOrderResponse {
     name: string;
     order: {

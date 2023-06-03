@@ -9,6 +9,9 @@ import {ForgotPassword} from "../../pages/ForgotPassword/ForgotPassword";
 import {ResetPassword} from "../../pages/ResetPassword/ResetPassword";
 import {Profile} from "../../pages/Profile/Profile";
 import {NotFound404} from "../../pages/NotFound404/NotFound404";
+import {OrdersInfoWrapper} from "../OrdersInfoWrapper/OrdersInfoWrapper";
+import {Feed} from "../Feed/Feed";
+import {OrdersHistory} from "../OrdersHistory/OrdersHistory";
 
 export const ModalSwitch = () => {
     const location = useLocation();
@@ -19,6 +22,9 @@ export const ModalSwitch = () => {
             <Routes location={background || location}>
                 <Route path="/" element={<App/>}/>
                 <Route path="/ingredients/:id" element={<IngredientDetailsWrapper/>}/>
+                <Route path="/feed/:id" element={<OrdersInfoWrapper/>}/>
+                <Route path="/profile/orders/:id" element={<OrdersInfoWrapper/>}/>
+
                 <Route
                     path="/login"
                     element={<ProtectedRouteElement element={Login} anonymous={true}
@@ -36,15 +42,23 @@ export const ModalSwitch = () => {
                     path="/reset-password"
                     element={<ProtectedRouteElement element={ResetPassword} anonymous={true}/>}
                 />
+
+                <Route path="/feed" element={<Feed/>}/>
                 <Route
                     path="/profile"
                     element={<ProtectedRouteElement element={Profile} anonymous={false}/>}
+                />
+                <Route
+                    path="/profile/orders"
+                    element={<ProtectedRouteElement element={OrdersHistory} anonymous={false}/>}
                 />
                 <Route path="*" element={<NotFound404/>}/>
             </Routes>
             {background &&
                 (<Routes>
                         <Route path="/ingredients/:id" element={<IngredientDetailsWrapper/>}/>
+                        <Route path="/feed/:id" element={<OrdersInfoWrapper/>}/>
+                        <Route path="/profile/orders/:id" element={<OrdersInfoWrapper/>}/>
                     </Routes>
                 )
             }
