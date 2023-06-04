@@ -1,4 +1,4 @@
-import {setAllOrders, setConnectionStatus, setUserOrders} from "../reducers/orderSlice";
+import {setConnectionStatus} from "../reducers/orderSlice";
 import {Middleware} from "redux";
 
 interface SocketMiddlewareOptions {

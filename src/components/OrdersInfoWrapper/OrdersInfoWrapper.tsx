@@ -16,7 +16,6 @@ import Loader from "../Loader/Loader";
 export const OrdersInfoWrapper = () => {
     const {id} = useParams<{ id: string }>();
     const orders = useSelector((state: RootState) => state.orders);
-    const ordersInfo = orders.allOrders;
     const {products} = useSelector((state: RootState) => state.products);
     const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
     const navigate = useNavigate();
@@ -25,10 +24,26 @@ export const OrdersInfoWrapper = () => {
 
     useEffect(() => {
         dispatch(setConnection(config.wsUrlOrdersAll));
+        if (location.pathname.includes('/profile') && !location.state?.modal) {
+            const savedUserData = localStorage.getItem('userData');
+            if (savedUserData) {
+                const userData = JSON.parse(savedUserData);
+                const accessToken = userData.accessToken ?? '';
+                const token = accessToken.substring(7) ?? '';
+                dispatch(setConnection(`${config.wsUrlOrders}?token=${token}`));
+            }
+        }
         return () => {
             dispatch(closeConnection);
         }
     }, [dispatch])
+
+    let ordersInfo = orders.allOrders;
+    if (location.pathname.includes('/feed')) {
+        ordersInfo = orders.allOrders;
+    } else if (location.pathname.includes('/profile')) {
+        ordersInfo = orders.userOrders;
+    }
 
     useEffect(() => {
         if (ordersInfo) {
