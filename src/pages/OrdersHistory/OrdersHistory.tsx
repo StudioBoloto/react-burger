@@ -1,4 +1,4 @@
-import styles from "../../pages/Pages.module.css";
+import styles from "../Pages.module.css";
 import {logoutUser} from "../../services/actions/userActions";
 import {cleanPassword} from "../../services/actions/passwordActions";
 import {Link, useLocation, useNavigate} from "react-router-dom";
@@ -8,11 +8,11 @@ import {AnyAction} from "redux";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {getProducts} from "../../services/actions/productActions";
-import commonStyles from "../App/App.module.css";
-import {OrderInfo} from "../OrderInfo/OrderInfo";
+import commonStyles from "../../components/App/App.module.css";
+import {OrderInfo} from "../../components/OrderInfo/OrderInfo";
 import {closeConnection, setConnection} from "../../services/reducers/orderSlice";
 import {config} from "../../services/Api";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 export const OrdersHistory = () => {
     const isFeed = false

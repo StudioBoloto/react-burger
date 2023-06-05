@@ -1,16 +1,16 @@
-import {OrderInfo} from "../OrderInfo/OrderInfo";
+import {OrderInfo} from "../../components/OrderInfo/OrderInfo";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../services/reducers/store";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {getProducts} from "../../services/actions/productActions";
-import commonStyles from "../App/App.module.css";
-import {OrdersColumns} from "../OrdersColumns/OrdersColumns";
+import commonStyles from "../../components/App/App.module.css";
+import {OrdersColumns} from "../../components/OrdersColumns/OrdersColumns";
 import {useLocation, useNavigate} from "react-router-dom";
 import {closeConnection, setConnection} from "../../services/reducers/orderSlice";
 import {config} from "../../services/Api";
-import Loader from "../Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 export const Feed = () => {
     const isFeed = true
