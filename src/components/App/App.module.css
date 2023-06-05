@@ -33,3 +33,39 @@
     background-color: #8585AD;
     border-radius: 10px;
 }
+
+.imageCircle {
+    width: 64px;
+    height: 64px;
+    border-radius: 100px;
+    background-color: #131316;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.imageCircle::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 100px;
+    background: linear-gradient(to bottom, #801ab2, #4c4cff);
+    z-index: -1;
+}
+
+.imageCircle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ingredientListItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

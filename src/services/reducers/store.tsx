@@ -3,6 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import productReducer from './productReducer';
 import {configureStore} from "@reduxjs/toolkit";
 import orderReducer from "./orderReducer";
+import ordersReducer, {socketMiddlewareOptions} from './orderSlice';
 import ingredientReducer from "./ingredientReducer";
 import ingredientDetailsReducer from "./ingredientDetailsReduser";
 import {passwordReducer} from "./passwordReducer";
@@ -11,12 +12,14 @@ import {profileReducer} from "./profileReducer";
 import {nameReducer} from "./nameReducer";
 import userReducer from './userReducer';
 import authReducer from "./authReducer";
+import {socketMiddleware} from "../middleware/socketMiddleware";
 
 const rootReducer = combineReducers({
     products: productReducer,
     ingredientDetails: ingredientDetailsReducer,
     ingredients: ingredientReducer,
     order: orderReducer,
+    orders: ordersReducer,
     name: nameReducer,
     email: emailReducer,
     password: passwordReducer,
@@ -29,7 +32,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 
 const store = configureStore({
     reducer: rootReducer,
-    middleware: [thunkMiddleware],
+    middleware: [thunkMiddleware, socketMiddleware(socketMiddlewareOptions)],
     devTools: process.env.NODE_ENV !== 'production',
 });
 
