@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import {Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
+import {useDispatch} from "react-redux";
 import {changePassword} from "../../services/actions/passwordActions";
+import {useSelector} from "../../services/hooks";
 
 type PasswordInputProps = {
     placeholder: string;
@@ -11,7 +11,7 @@ type PasswordInputProps = {
 const PasswordInput = ({ placeholder }: PasswordInputProps) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const dispatch = useDispatch();
-    const {password} = useSelector((state: RootState) => state.password);
+    const {password} = useSelector((state) => state.password);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const onIconClick = () => {

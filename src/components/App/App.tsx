@@ -1,20 +1,11 @@
 import styles from './App.module.css'
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {getProducts} from "../../services/actions/productActions";
-import {RootState} from '../../services/reducers/store';
+import React from "react";
 import DragAndDropContainer from "../DragAndDropContainer/DragAndDropContainer";
 import {Outlet} from "react-router-dom";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
+import {useSelector} from "../../services/hooks";
 
 export function App() {
-    const {products, isLoading, hasError} = useSelector((state: RootState) => state.products);
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-    useEffect(() => {
-        dispatch(getProducts());
-    }, [dispatch]);
-
+    const {products, isLoading, hasError} = useSelector((state) => state.products);
     return (
         <>
             {!isLoading && !hasError && products.length && (

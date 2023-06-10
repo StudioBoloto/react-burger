@@ -2,17 +2,13 @@ import styles from "../Pages.module.css";
 import {logoutUser} from "../../services/actions/userActions";
 import {cleanPassword} from "../../services/actions/passwordActions";
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {ThunkDispatch} from "redux-thunk";
-import {RootState} from "../../services/reducers/store";
-import {AnyAction} from "redux";
-import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect} from "react";
-import {getProducts} from "../../services/actions/productActions";
 import commonStyles from "../../components/App/App.module.css";
 import {OrderInfo} from "../../components/OrderInfo/OrderInfo";
 import {closeConnection, setConnection} from "../../services/reducers/orderSlice";
 import {config} from "../../services/Api";
 import Loader from "../../components/Loader/Loader";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const OrdersHistory = () => {
     const isFeed = false
@@ -21,8 +17,8 @@ export const OrdersHistory = () => {
     const maxWidth = isFeed ? "612px" : "870px";
     const location = useLocation();
     const navigate = useNavigate();
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-    const orders = useSelector((state: RootState) => state.orders);
+    const dispatch = useDispatch();
+    const orders = useSelector((state) => state.orders);
     const ordersInfo = orders.userOrders;
 
     useEffect(() => {
@@ -37,13 +33,6 @@ export const OrdersHistory = () => {
             dispatch(closeConnection);
         }
     }, [dispatch])
-
-    const {products} = useSelector((state: RootState) => state.products);
-    useEffect(() => {
-        if (!products.length) {
-            dispatch(getProducts());
-        }
-    }, [dispatch, products.length]);
 
     const handleOpenModal = (_id: string) => {
         navigate(`/profile/orders/${_id}`,

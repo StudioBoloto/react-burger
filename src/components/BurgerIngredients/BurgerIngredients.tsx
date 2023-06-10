@@ -4,14 +4,14 @@ import commonStyles from '../App/App.module.css'
 import {IngredientsTitle} from "../IngredientsTitle/IngredientsTitle";
 import {IngredientsItems} from "../IngredientsItems/IngredientsItems";
 import {Tabs} from "../Tabs/Tabs";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
+import {useDispatch} from "react-redux";
 import {updateProductCount} from "../../services/actions/productActions";
+import {useSelector} from "../../services/hooks";
 
 export function BurgerIngredients() {
     const dispatch = useDispatch();
-    const {products} = useSelector((state: RootState) => state.products);
-    const {ingredientsIds} = useSelector((state: RootState) => state.ingredients);
+    const {products} = useSelector((state) => state.products);
+    const {ingredientsIds} = useSelector((state) => state.ingredients);
     useEffect(() => {
         const updatedProducts = products.map((product) => {
             const count = ingredientsIds.filter((id) => id === product._id).length;

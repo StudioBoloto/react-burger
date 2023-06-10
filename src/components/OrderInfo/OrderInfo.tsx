@@ -1,9 +1,8 @@
 import {IOrderInfo, IOrderProduct, IProduct} from "../../models";
 import {OrderIngredients} from "../OrderIngredients/OrderIngredients";
-import {useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import {OrderIngredientsPreview} from "../OrderIngredientsPreview/OrderIngredientsPreview";
 import {useMemo} from "react";
+import {useSelector} from "../../services/hooks";
 
 export const OrderInfo = ({
                               order,
@@ -11,7 +10,7 @@ export const OrderInfo = ({
                               isPreview = false,
                               isFeed = false,
                           }: IOrderInfo & { isModal?: boolean } & { isPreview?: boolean } & { isFeed?: boolean }) => {
-    const {products} = useSelector((state: RootState) => state.products);
+    const {products} = useSelector((state) => state.products);
     const {number, status, name, ingredients, createdAt} = order;
 
     const orderProducts: IOrderProduct[] = [];

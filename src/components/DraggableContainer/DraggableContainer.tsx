@@ -4,9 +4,9 @@ import {useDrop} from 'react-dnd'
 import {DraggableItem} from "../DraggableItem/DraggableItem";
 import {IProduct} from "../../models";
 import {removeIngredient, sortIngredient} from "../../services/actions/ingredientActions";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
+import {useDispatch} from "react-redux";
 import commonStyles from '../App/App.module.css'
+import {useSelector} from "../../services/hooks";
 
 export const ItemTypes = {
     ITEM: 'item',
@@ -14,14 +14,14 @@ export const ItemTypes = {
 
 export const DraggableContainer: FC = memo(function DraggableContainer() {
     const dispatch = useDispatch();
-    const {basket} = useSelector((state: RootState) => state.ingredients);
+    const {basket} = useSelector((state) => state.ingredients);
     const handleDeleteButtonClick = (ingredient: IProduct) => {
         dispatch(removeIngredient(ingredient));
     };
 
     const findItem = useCallback(
         (id: string) => {
-            const item = basket.filter((it: IProduct) => it.id === id)[0]
+            const item = basket.filter(it => it.id === id)[0]
             return {
                 item,
                 index: basket.indexOf(item),

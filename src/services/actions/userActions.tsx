@@ -2,8 +2,8 @@ import {createAsyncThunk} from '@reduxjs/toolkit'
 import {ILoginRequest, IRegistrationRequest, ITokenRequest} from "../../models";
 import {config, request} from "../Api";
 import {NavigateFunction} from 'react-router-dom';
-import {RootState} from "../reducers/store";
 import {updateToken} from "./authActions";
+import {RootState} from "../types";
 
 export const loginUser = createAsyncThunk(
     'user/login',

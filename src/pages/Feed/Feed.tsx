@@ -1,16 +1,12 @@
 import {OrderInfo} from "../../components/OrderInfo/OrderInfo";
 import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
-import {getProducts} from "../../services/actions/productActions";
 import commonStyles from "../../components/App/App.module.css";
 import {OrdersColumns} from "../../components/OrdersColumns/OrdersColumns";
 import {useLocation, useNavigate} from "react-router-dom";
 import {closeConnection, setConnection} from "../../services/reducers/orderSlice";
 import {config} from "../../services/Api";
 import Loader from "../../components/Loader/Loader";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const Feed = () => {
     const isFeed = true
@@ -20,9 +16,8 @@ export const Feed = () => {
     const maxItemsPerColumn = 10;
     const location = useLocation();
     const navigate = useNavigate();
-    const {products} = useSelector((state: RootState) => state.products);
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-    const orders = useSelector((state: RootState) => state.orders);
+    const dispatch = useDispatch();
+    const orders = useSelector((state) => state.orders);
     const ordersInfo = orders.allOrders;
 
     useEffect(() => {
@@ -31,13 +26,6 @@ export const Feed = () => {
             dispatch(closeConnection);
         }
     }, [dispatch])
-
-    useEffect(() => {
-        if (!products.length) {
-            dispatch(getProducts());
-        }
-    }, [dispatch, products.length]);
-
 
     const handleOpenModal = (_id: string) => {
         navigate(`/feed/${_id}`, {state: {modal: true, from: '/feed', background: location}});
