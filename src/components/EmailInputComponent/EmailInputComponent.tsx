@@ -1,8 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import {EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import {changeEmail} from "../../services/actions/emailActions";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 type EmailInputProps = {
     placeholder?: string;
@@ -11,7 +10,7 @@ type EmailInputProps = {
 
 const EmailInputComponent = ({placeholder, isIcon}: EmailInputProps) => {
     const dispatch = useDispatch();
-    const {email} = useSelector((state: RootState) => state.email);
+    const {email} = useSelector((state) => state.email);
 
     const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeEmail(e.target.value));

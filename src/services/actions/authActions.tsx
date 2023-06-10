@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {config, request} from "../Api";
 import {NavigateFunction} from 'react-router-dom';
 import {IPasswordRequest, IPasswordResetRequest, ITokenRequest} from "../../models";
-import {RootState} from "../reducers/store";
+import {RootState} from "../types";
 
 export const updateToken = createAsyncThunk(
     'user/updateToken',

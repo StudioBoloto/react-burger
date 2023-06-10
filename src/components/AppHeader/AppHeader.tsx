@@ -7,13 +7,11 @@ import {
     ListIcon,
     ProfileIcon
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import {useDispatch} from "react-redux";
 import {getUser} from "../../services/actions/userActions";
-import {ThunkDispatch} from "redux-thunk";
-import {RootState} from "../../services/reducers/store";
-import {AnyAction} from "redux";
 import {changeName} from "../../services/actions/nameActions";
 import {changeEmail} from "../../services/actions/emailActions";
+import {getProducts} from "../../services/actions/productActions";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 interface HeaderProps {
     children: React.ReactNode;
@@ -40,6 +38,7 @@ const HeaderElement = (props: HeaderProps) => {
 }
 
 export function AppHeader() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const path = location.pathname;
@@ -63,8 +62,6 @@ export function AppHeader() {
         navigate('/');
     }
 
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-
     useEffect(() => {
         const savedUserData = localStorage.getItem('userData');
         const token = localStorage.getItem('accessToken') ?? '';
@@ -80,6 +77,13 @@ export function AppHeader() {
             dispatch(getUser({token: token}));
         } else {return}
     }, [dispatch]);
+
+    const {products} = useSelector((state) => state.products);
+    useEffect(() => {
+        if (!products.length) {
+            dispatch(getProducts());
+        }
+    }, [dispatch, products.length]);
 
     return (
         <header

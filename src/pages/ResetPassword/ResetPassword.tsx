@@ -3,19 +3,16 @@ import styles from '../Pages.module.css';
 import {Input, Button} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import {updatePassword} from "../../services/actions/authActions";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const ResetPassword = () => {
     const [valueCode, setValueCode] = useState('')
     const inputRef = useRef<HTMLInputElement>(null);
-    const {password} = useSelector((state: RootState) => state.password);
+    const {password} = useSelector((state) => state.password);
     const location = useLocation();
     const navigate = useNavigate();
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (location.state?.from !== '/forgot-password') {

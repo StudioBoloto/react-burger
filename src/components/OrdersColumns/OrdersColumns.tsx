@@ -15,7 +15,7 @@ export const OrdersColumns = ({columns, status}: OrdersColumnsProps) => {
             <div className={styles.columnsContainer}>
                 {columns && columns.map((column, columnIndex) => (
                     <div className={styles.columnContainer} key={columnIndex}>
-                        {column && column.map((orderNumber: number, orderIndex: number) => (
+                        {column && column.map((orderNumber, orderIndex) => (
                             <div className="order" key={orderIndex}>
                                 <p className={`text text_type_digits-default 
                         ${status !== "Выполнен" ? "" : "text_color_success"} `}>{orderNumber}</p>

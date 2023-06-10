@@ -10,8 +10,8 @@ import {ResetPassword} from "../../pages/ResetPassword/ResetPassword";
 import {Profile} from "../../pages/Profile/Profile";
 import {NotFound404} from "../../pages/NotFound404/NotFound404";
 import {OrdersInfoWrapper} from "../OrdersInfoWrapper/OrdersInfoWrapper";
-import {Feed} from "../Feed/Feed";
-import {OrdersHistory} from "../OrdersHistory/OrdersHistory";
+import {Feed} from "../../pages/Feed/Feed";
+import {OrdersHistory} from "../../pages/OrdersHistory/OrdersHistory";
 
 export const ModalSwitch = () => {
     const location = useLocation();

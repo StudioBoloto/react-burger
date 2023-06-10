@@ -4,18 +4,15 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import EmailInputComponent from "../../components/EmailInputComponent/EmailInputComponent";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import {loginUser} from "../../services/actions/userActions";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const Login = () => {
-    const {email} = useSelector((state: RootState) => state.email);
-    const {password} = useSelector((state: RootState) => state.password);
+    const {email} = useSelector((state) => state.email);
+    const {password} = useSelector((state) => state.password);
     const navigate = useNavigate();
     const location = useLocation();
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+    const dispatch = useDispatch();
 
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

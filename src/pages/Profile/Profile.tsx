@@ -4,23 +4,20 @@ import React, {FormEvent} from "react";
 import EmailInputComponent from "../../components/EmailInputComponent/EmailInputComponent";
 import PasswordInput from "../../components/PasswordInput/PasswordInput";
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import NameInputComponent from "../../components/NameInputComponent";
 import {changeName} from "../../services/actions/nameActions";
 import {changeEmail} from "../../services/actions/emailActions";
 import {logoutUser, updateUser} from "../../services/actions/userActions";
 import {cleanPassword} from "../../services/actions/passwordActions";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const Profile = () => {
     const navigate = useNavigate();
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
-    const {name} = useSelector((state: RootState) => state.name);
-    const {email} = useSelector((state: RootState) => state.email);
-    const {password} = useSelector((state: RootState) => state.password);
-    const {currentEmail, currentName} = useSelector((state: RootState) => ({
+    const dispatch = useDispatch();
+    const {name} = useSelector((state) => state.name);
+    const {email} = useSelector((state) => state.email);
+    const {password} = useSelector((state) => state.password);
+    const {currentEmail, currentName} = useSelector((state) => ({
         currentEmail: state.user?.user?.currentEmail || '',
         currentName: state.user?.user?.currentName || '',
     }));

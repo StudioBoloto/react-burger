@@ -3,9 +3,9 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 import {BurgerIngredients} from "../BurgerIngredients/BurgerIngredients";
 import {BurgerConstructor} from "../BurgerConstructor/BurgerConstructor";
 import DropTarget from "../DropTarget/DropTarget";
-import {useDispatch} from "react-redux";
 import {addIngredient, replaceIngredient} from "../../services/actions/ingredientActions";
 import {IProduct} from "../../models";
+import {useDispatch} from "../../services/hooks";
 
 type AcceptedItemType = "bun" | "sauce" | "main";
 

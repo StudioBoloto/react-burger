@@ -3,16 +3,13 @@ import styles from '../Pages.module.css';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components'
 import {Link, useNavigate} from "react-router-dom";
 import EmailInputComponent from "../../components/EmailInputComponent/EmailInputComponent";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import {resetPassword} from "../../services/actions/authActions";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const ForgotPassword = () => {
-    const {email} = useSelector((state: RootState) => state.email);
+    const {email} = useSelector((state) => state.email);
     const navigate = useNavigate();
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+    const dispatch = useDispatch();
 
     const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();

@@ -1,8 +1,7 @@
 import {Navigate, useLocation} from 'react-router-dom';
 import React from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
 import Loader from "../Loader/Loader";
+import {useSelector} from "../../services/hooks";
 
 interface ProtectedRouteElementProps {
     element: React.ComponentType<any>;
@@ -15,8 +14,8 @@ export function ProtectedRouteElement({
                                           anonymous = false,
                                           previousPath
                                       }: ProtectedRouteElementProps) {
-    const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-    const loading = useSelector((state: RootState) => state.user.loading);
+    const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+    const loading = useSelector((state) => state.user.loading);
     const location = useLocation();
 
     if (loading) {

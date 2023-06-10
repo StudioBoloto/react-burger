@@ -1,8 +1,7 @@
-import {useDispatch, useSelector} from "react-redux";
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useRef, useState} from "react";
-import {RootState} from "../services/reducers/store";
 import {changeName} from "../services/actions/nameActions";
+import {useDispatch, useSelector} from "../services/hooks";
 
 type IconType = 'EditIcon' | undefined;
 
@@ -14,7 +13,7 @@ type NameInputProps = {
 const NameInputComponent = ({placeholder, icon}: NameInputProps) => {
     const [isDisabled, setDisabled] = useState(true);
     const dispatch = useDispatch();
-    const {name} = useSelector((state: RootState) => state.name);
+    const {name} = useSelector((state) => state.name);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {

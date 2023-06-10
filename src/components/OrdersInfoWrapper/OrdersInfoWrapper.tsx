@@ -1,23 +1,18 @@
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../services/reducers/store";
-import {ThunkDispatch} from "redux-thunk";
-import {AnyAction} from "redux";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {getProducts} from "../../services/actions/productActions";
 import {Modal} from "../Modal/Modal";
 import {NotFound404} from "../../pages/NotFound404/NotFound404";
 import {OrderInfo} from "../OrderInfo/OrderInfo";
 import {closeConnection, setConnection} from "../../services/reducers/orderSlice";
 import {config} from "../../services/Api";
 import Loader from "../Loader/Loader";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 
 export const OrdersInfoWrapper = () => {
     const {id} = useParams<{ id: string }>();
-    const orders = useSelector((state: RootState) => state.orders);
-    const {products} = useSelector((state: RootState) => state.products);
-    const dispatch: ThunkDispatch<RootState, any, AnyAction> = useDispatch();
+    const orders = useSelector((state) => state.orders);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const [isLoading, setIsLoading] = useState(true);
@@ -50,12 +45,6 @@ export const OrdersInfoWrapper = () => {
             setIsLoading(false);
         }
     }, [ordersInfo]);
-
-    useEffect(() => {
-        if (!products.length) {
-            dispatch(getProducts());
-        }
-    }, [dispatch, products.length]);
 
     const order = ordersInfo?.orders.find((order) => order._id === id);
     const modal = location.state?.modal;
