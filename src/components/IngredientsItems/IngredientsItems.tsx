@@ -2,9 +2,9 @@ import React, {useMemo} from "react";
 import {IProduct} from "../../models";
 import styles from "../IngredientsItems/IngredientsItems.module.css";
 import {DraggableIngredient} from "../DraggableIngredient/DraggableIngredient";
-import {useDispatch} from "react-redux";
 import {getIngredientInfo} from "../../services/actions/ingredientDetailsActions";
 import {useLocation, useNavigate} from "react-router-dom";
+import {useDispatch} from "../../services/hooks";
 
 interface ProductsProps {
     products: IProduct[];

@@ -1,8 +1,7 @@
-import {useDispatch} from "react-redux";
 import {Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import React, {useRef, useState} from "react";
 import {changeName} from "../services/actions/nameActions";
-import {useSelector} from "../services/hooks";
+import {useDispatch, useSelector} from "../services/hooks";
 
 type IconType = 'EditIcon' | undefined;
 

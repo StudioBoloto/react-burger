@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import {Input} from '@ya.praktikum/react-developer-burger-ui-components'
-import {useDispatch} from "react-redux";
 import {changePassword} from "../../services/actions/passwordActions";
-import {useSelector} from "../../services/hooks";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 type PasswordInputProps = {
     placeholder: string;

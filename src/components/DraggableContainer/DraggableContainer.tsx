@@ -4,9 +4,8 @@ import {useDrop} from 'react-dnd'
 import {DraggableItem} from "../DraggableItem/DraggableItem";
 import {IProduct} from "../../models";
 import {removeIngredient, sortIngredient} from "../../services/actions/ingredientActions";
-import {useDispatch} from "react-redux";
 import commonStyles from '../App/App.module.css'
-import {useSelector} from "../../services/hooks";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export const ItemTypes = {
     ITEM: 'item',

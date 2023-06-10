@@ -4,9 +4,8 @@ import commonStyles from '../App/App.module.css'
 import {IngredientsTitle} from "../IngredientsTitle/IngredientsTitle";
 import {IngredientsItems} from "../IngredientsItems/IngredientsItems";
 import {Tabs} from "../Tabs/Tabs";
-import {useDispatch} from "react-redux";
 import {updateProductCount} from "../../services/actions/productActions";
-import {useSelector} from "../../services/hooks";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 export function BurgerIngredients() {
     const dispatch = useDispatch();

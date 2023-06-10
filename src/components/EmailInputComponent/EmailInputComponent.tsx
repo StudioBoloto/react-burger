@@ -1,8 +1,7 @@
-import {useDispatch} from "react-redux";
 import {EmailInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 import {changeEmail} from "../../services/actions/emailActions";
-import {useSelector} from "../../services/hooks";
+import {useDispatch, useSelector} from "../../services/hooks";
 
 type EmailInputProps = {
     placeholder?: string;
